@@ -2313,7 +2313,6 @@ without-auth_e-book_tutorial_免登錄電子書教學.md
 原始文件行號	不同行號	差異線變化
 @@ -64,7 +64,7 @@ javascript:(function(){var script=document.createElement('script');script.src='h
 
-如果您使用的是英文（如上圖），請輸入「`允許貼上`」，然後按 Enter 鍵。
 
 其他語言，請輸入對應的內容，然後按 Enter 鍵。
 其他語言，請輸入對應中的內容，然後按 Enter 鍵。
