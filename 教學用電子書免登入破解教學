@@ -1,0 +1,1342 @@
+教學用電子書免登入破解教學| 本腳本用於繞過台灣主要課本/習作出版社電子書的前置身份驗證，完成需要教師帳號即可使用電子書。支持翰林、南一、康軒三大出版社 | 請勿將本腳本作為抄本答案、用途等惡意用途，使用本腳本者，請自行承擔所有後果與風險
+without-auth_e-book_tutorial_免登錄電子書教學.md
+訪問次數
+
+教學用電子書免登入破解教學
+使用前請務必閱讀免責聲明
+
+免責聲明
+請勿將本腳本作為抄本答案、用途等惡意用途，使用本腳本者，請自行承擔所有後果與風險。
+簡介
+此腳本用於繞過台灣主要課本/習作出版社電子書的登入身份驗證，完成需要教師帳號即可使用電子書。
+
+開發緣由
+到底是因為開發者忘記帶課本，但又想查閱課本的資料，心血來潮研究看看電子書的驗證設計。
+開發這個不是希望拿去抄答案，是希望讓真正需要用的人可以用到，也各家​​出版社能夠提供一個學生和家長的版本，就是瀏覽不能但顯示答案或者專為學習者設計，就希望可以完美解決這些問題。
+
+如何使用
+克拉示範翰林版如何使用，其他出版社以此類推首先先前往要使用的電子書網站（下方有連結），然後在瀏覽器的開發者頁面（F12）中的主控台（控制台）輸入以下腳本，最後重新加載網頁即可快速登錄。
+
+布拉格大會以 Google Chrome 的環境作為示範，Firefox/Edge/Safari 大同小異。
+
+影像
+
+腳本
+✅ 康軒
+連結：康軒網頁媒體盒
+
+本地儲存。設定項目（ “登入帳號” ， “模擬帳號” ）；// 設定一個假帳號localStorage .setItem ( “uuid” , “ mockUUID ” ) ; // 設定假的UUID 
+  
+最後測試時間：2022/10/18
+
+✅南一
+連結：OneBook 南一電子書
+
+讓 mockToken  =  JSON 。stringify （{ 
+    “代碼”：“SUCCESS” ，
+    “jwt”：「eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbXlhY2NvdW50Lm5hbmkuY29vbC8iLCJzdWIiOiJ1c2Vycy9 IsImZyb20iOiJOYW5pIiwidXNlcm5hbWUiOiJqYWNreWNoaXUwMSIsImVtYWlsdmFsaWQiOnRydWUsIm1vYmlsZXZhbGlkIjpmYWxzZSwiZW1haWwira 5tYTE1OTg3NTMyQGdtYWlsLmNvbSIsInVpZCI6ImI1ZjE3MGYwLTI5ZmMtMTFlZC04NDJjLTQ5OTAxMGVhODI0MCIsImp0aSI6IjliOGI55OTE1LYyMGVhODI0MCIsImp0aSI6IjliOGI55OTE1LYyMGQQt NlMS04ZmJjLTA0OWFhYjkzZTY4ZiIsImlhdCI6MTY2NzIzMTA2NiwiZXhwIjoxNjcyNDE1MDY2fQ.R9cjUUSocKL9CiPTa2Tf8zPNiZLSJLRqH9eLSJLRq } ）；
+
+讓 欄位名稱 =  “ nani_oneclass_login_token” ；
+var  d  =  new  Date ( ) ; 
+d . setTime ( d.getTime ( ) + ( 1 * 24 * 60 * 60 * 1000 ) ) ; var過期= " expires = " + d . UTCvarSvar Svar ；地點。主機名稱；if ( hostname . indexOf ( "oneclass.com.tw" ) > 0 ) {文檔. cookie =欄位名稱+ “=” + mockToken + “;” +過期+ “;path=/;domain=oneclass.com.tw” ; } {其他文件。Cookie =欄位名稱+ “=” + mockToken + “;” +過期+ “；路徑=/” ；}          
+     
+   
+    
+              
+  
+              
+
+    
+本地儲存。setItem ( “nani_tokenInfo” ,  mockToken ) ;  // 設定身份驗證用的toekn
+最後測試時間：2022/11/13
+token 由 @jackychiu0207 提供
+
+❌翰林
+連結：翰林行動大師電子書
+
+讓 時間 = 新 日期（）。獲取時間( ) 。到字串( ) ；
+本地儲存。setItem ( "last_signinX_v2023" , 時間) ;  // 將帳號登入日期設為現在，避免被替換為過渡
+localStorage 。setItem ( "roleX_v2023" ,  "老師" ) ;  // 設定為身分教師
+localStorage 。設定項目（“emailX_v2023” ， “test@test.com” ）； // 由於翰林電子書會驗證是否有設定信箱，如果有設定才能使用
+localStorage .設定項目（“tokenX_v2023” ， 「eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg1NzgwNWYxZGQ3ZmE5YTZiNTI3ZjQ0ZWNmZmJkNDhjIiwidHlwIjoiSl DUIn0.-iyniIsIm5hbWUiOiLnvoXlhyPosp4iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicHJlZmVycmVkX3VzZXJ uYW1lIjoi576F5YWD6LKeIiwidXNlcl9kb21haW4iOiJlZHUiLCJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIiw iYXBpMSIsIklkZW50aXR5U2VydmVyQXBpIiwiaGFubGluLWFwaSIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJ wd2QiXX0.So0Fcvd-a_BlnQcgcmO7vXTxlCJ_AnIEPPwpoHHpqc2cP3fBCGrY496R1q4J9j2E9sYUahxeYu7M3RM hPS_79JiEq8EWcSUvNxJASwAgvmek_HxWS2sgPZbvFkCJ1zYXfqHpbUaRfeqNPZyB3Yno94OYU4nl5f0gRzwUf2k GiyM2XhTO5EQZUCXGDJfqNmBlnwL45MwlQ_l_sRSYFNllda37nTECse91Qe1DeYKCm1Z9s8MerCCnmJgpjNsKOPo dvbz8ynUT7qbU2IDldb8z8h0mtI9DbW8tuG63c-Nqyr2ZHHPXT5aIaWtYUUBgFrVakVW-nI0kv5cEYj8grUyuZFg" )  // 設定驗證用的token
+最後測試時間：2022/11/12
+token 由 @jackychiu0207 提供
+
+限制
+由於此腳本僅繞過了身份驗證，因此可能會導致無法使用儲存資料、測試等功能。
+翰林版電子書每天會自動重置資料，因此需要重新執行劇本。
+南一版電子書因設計較為嚴謹，可能在未來此破解方法將無法使用，需要尋找更好的解決方案。
+劇本由SiongSng製作| 此腳本由菘菘製作
+版權所有 © 2022菘菘。保留所有權利。
+版權所有 © 2022 SiongSng。版權所有。
+
+加載之前的評論...
+@bowenx442
+bowenx442 評論道 1月8日
+請問如何用盜改猴破解康軒(我不會用)
+
+@chenbread
+chenbread 評論道 1月8日
+有人有奇鼎的帳單嗎
+
+@nikola0710
+nikola0710 評論道 1月8日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+翰林可以自己辦，我可以提供翰林高效業務手機以及對應學校
+學校：桃園市楊梅區楊梅高中
+業務手機：0958-110-622
+
+@nikola0710
+nikola0710 評論道 1月8日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+康軒比較難
+
+@nikola0710
+nikola0710 評論道 1月8日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+但有學生版電子書
+https://studentetextbookkhhdata.kh.edu.tw/?openid_sig=BoP%2FfEvNDryBe8bO3WkXoMB HncRwVugQ2NbGM8vsSww%3D&stamp=2022-10-17_14%3A16%3A47&user_guid=27e72fe99a1dd6c0ebb57634 970e5cd42857f5ff1f21da7487fe1fc7ef06d8b0&user_claimid=http%3A%2F%2Fopenid.kh.edu.tw%2F kheduaccount&user_fullname=%E5%BC%B5%E5%BF%97%E5%A0%85&user_email=c%40stp.kh.edu.tw&use r_性別=M&user_schoolid=124758&user_schooltitle=%5B%7B%22sid%22%3A%22124758%22%2C%22title s%22%3A%5B%22%E6%95%99%E5%B8%AB%22%2C%22%E8%A8%AD%E5%82%99%E7%B5%84%E9%95%B7%E5%85%BC%E 8%B3%87%E8%A8%8A%E5%9F%B7%E7%A7%98%22%5D%7D%5D&user_classinfo=%5B%5D&sign=9R91tPQU02Zy1 i3wEwgRpw3I2E9gGwDZJIV7wlTKN8Y%3D&redirect_url=http%3A%2F%2Fstudentetextbook.knsh.com.tw
+
+@nikola0710
+nikola0710 評論道 1月8日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+學生版電子書沒有題庫，只有電子版課本
+
+@nikola0710
+nikola0710 評論道 1月8日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+你都嘗試過
+
+@nikola0710
+nikola0710 評論道 1月8日
+有人有奇鼎的帳單嗎
+
+你可以試試看不能辦
+
+@nikola0710
+nikola0710 評論道 1月8日
+有人有奇鼎的帳單嗎
+
+先試再說
+
+@nikola0710
+nikola0710 評論道 1月8日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+康軒註冊https://ac.knsh.com.tw/register
+
+@alstontsai0816
+alstontsai0816 評論道 1月8日
+康軒之前有示過，但是還是要業務的驗證
+
+@ryan20080104
+ryan20080104 評論道 1月8日
+各位大佬請問有龍騰的嗎 謝謝
+
+@corrine226503918
+corrine226503918 評論 1月8日
+翰林電子書
+https://website.hle.com.tw/market/jr/%E6%95%99%E6%9D%90/%E6%95%99%E6%9D%90%E6%A8%A3%E6%9B%B 8/%E7%BF%B0%E6%9E%97%E5%9C%8B%E4%B8%AD%E5%9C%8B%E6%96%87%E4%B8%83%E4%B8%8A%E8%AA%B2%E6%9C%AC.pdf
+
+@bowenx442
+bowenx442 評論道 1月9日
+有奇鼎的套餐嗎
+
+@i-like-dev
+i-like-dev 評論 1月9日
+誰想要？
+
+請問可以給我嗎，謝謝！
+taiwan@walking-cat.com
+⬆️這是我的信箱，謝謝您～
+
+@thanh199519951995
+thanh199519951995 評論 1月9日
+誰有龍騰的計畫嗎，求求🥺
+
+@bowenx442
+bowenx442 評論道 1月10日
+@Vunor謝謝謝謝這個破解康軒的可以用
+
+@corrine226503918
+corrine226503918 評論 1月10日
+誰能提供康軒的業務手機好尺碼嗎？
+謝謝！
+
+@corrine226503918
+corrine226503918 評論 1月10日
+電子書登入後可以把竄改猴刪除嗎？
+（我之後還要用電子書的話）
+
+@Dkdn2828
+Dkdn2828 評論道 1月11日
+如果註冊被封被終止可以過幾天在註冊新的帳號但是你的電話號碼已經註冊過了但是過了幾天就不會了你的電話號碼又可以註冊了或者你可以刪除帳號我是刪除帳號在註冊一個我是用這種方式可以幫到我的電子信箱woaibidianbidian@gmail.com如果有什麼問題可以詢問我我都會回答我謝謝我都會回答
+
+@Dkdn2828
+Dkdn2828 評論道 1月11日
+這裡提供一下康軒業務電話號碼0920-088-020然後這個是每個帳號都可以註冊有可能會被解鎖被終止先申請刪除帳號過大概35天左右你在註冊看看你的哪個帳號就會被刪掉然後你以前註冊你自己的電話號碼的時候你的電話號碼又可以註冊了希望有幫到大家一樣的電子信箱：woaibidianbidian@gmail.com做什麼隨時就可以聯繫我大概在15小時會回覆如果線上通知有跳出來我會立刻回覆謝謝~
+
+@Dkdn2828
+Dkdn2828 評論道 1月11日
+這樣大家就不要問康軒帳號密碼了謝謝都有出教程可以註冊一個自己的帳號了就不要在詢問了感謝大家信箱woaibidianbidian@gmail.com
+
+@zin104
+zin104 評論道 1月12日
+求南一帳密
+
+@nikola0710
+nikola0710 評論道 1月12日
+南一自己註冊，不用業務手機
+
+@zoold114
+zoold114 評論道 1月12日
+請問我需要康宣
+bg787878787878@gmail.com
+
+@zoold114
+zoold114 評論道 1月12日
+跪求翰林和康軒的頭像跟密碼rexofgod2@gmail.com
+
+康軒比較難
+
+可以把康宣的帳號密碼給我嗎？謝謝
+
+@dhsgwrrt
+dhsgwrrt 評論道 1月13日
+我有翰林的帳號跟密碼
+
+@wheellessds
+wheellessds 評論道 1月13日
+請翰林的帳號跟密碼lessd6660@gmail.com
+
+@Erichuuuuuu
+Erichuuuuuuu 評論道 1月14日
+求龍騰的帳號跟密碼huding5030@gmail.com
+
+@0825NNN
+0825NNN 評論 1月14日 • 
+懇求康軒、翰林、帳密(絕對不會改變)，真心感謝～！
+happyqwerty76@gmail.com
+
+@kiki83009
+kiki83009 評論道 1月15日
+懇求康軒的帳密（絕對不會更改），非常感謝
+kiki83009@gmail.com
+
+@MINA1617
+MINA1617 評論 1月15日
+懇求康軒、翰林、帳密(絕對不會改變)，衷心感謝～！
+q0532qq3q0532qq3@gmail.com
+
+@MINA1617
+MINA1617 評論 1月15日
+懇求康軒、翰林、帳密(絕對不會改變)，衷心感謝～！
+q0532qq3q0532qq3@gmail.com
+
+@MINA1617
+MINA1617 評論 1月15日
+懇求康軒、翰林、帳密(絕對不會改變)，真心感謝～q0532qq3q0532qq3@gmail.com
+
+@ksjw2157673
+ksjw2157673 評論道 1月15日 • 
+懇求康軒業務電話🙏還有學區跟學校感恩
+不然有人可以提供帳密嗎？絕對不會更改再麻煩寄到我的信箱q1048132@gmil.com
+
+@Cambynba
+Cambynba 評論道 1月18日
+懇求康軒、翰林、帳密(報表變密碼)，拜託了Q_Q cambynba@gmail.com
+
+@JennyJYJ
+JennyJYJ 評論道 1月18日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。安裝方法：
+
+安裝 Tampermonkey（竊改猴）插件
+新增使用者腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         KNSHUtility Lite
+// @namespace    http://vochant.github.io/
+// @version      2.3
+// @description  KNSH Utility - Cracks & Features
+// @author       Mirekintoc (vochant)
+// @match        https://digitalmaster.knsh.com.tw/v3/pages/*/index.html*
+// @match        https://digitalmaster.knsh.com.tw/ebooks/BookMain/Viewer_A/index.html*
+// @icon         https://webetextbook.knsh.com.tw/Ebookvieweran4Teacher/favicon.ico
+// @license      MIT
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+    // 'use strict';
+    console.log(unsafeWindow);
+    // 页面类型判定
+    if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/v3\/pages\/.*\/index\.html.*/)) {
+        console.log("运行模式: 导览页");
+        // 导览页面 - 绕过登录验证
+        unsafeWindow.__fetch = unsafeWindow.fetch;
+        unsafeWindow.fetch = async function(url, opts) {
+            if (/verifykeygrip/i.test(url)) {
+                return {
+                    json: function() {
+                        return {isValid: true};
+                    }
+                };
+            }
+            else {
+                let r = (await unsafeWindow.__fetch(url, opts)).json();
+                if (JSON.stringify(r).includes("errorType")) {
+                    return {
+                        json: function() {
+                            return {isValid: true};
+                        }
+                    };
+                }
+                return { json: function() {return r;} };
+            }
+        }
+    }
+    else if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/ebooks\/BookMain\/Viewer_A\/index\.html.*/)) {
+        console.log("运行模式: 国小电子书");
+        // 国小电子书页面 - 绕过登录验证
+        unsafeWindow.SaveCommForKnshAPIOriginal = unsafeWindow.SaveCommForKnshAPI; // 备份原构造函数
+        unsafeWindow.SaveCommForKnshAPI = function() {
+            let obj = new SaveCommForKnshAPIOriginal;
+            obj.VerifyHasLogin = function(arg) {
+                var t = senjClass.GetQueryString("shortcode");
+                var n = function(t) {
+                    arg && arg.fun && arg.fun(t)
+                };
+                n({result: true});
+                return true;
+            }; // 重写
+            console.log(obj);
+            return obj;
+        }; // 重写构造函数
+    }
+    else {
+        console.log('运行模式未知');
+    }
+})();
+@vochant大大你的這個很讚👍，可以開電子書也可以下載ISO。
+你還有試過其他的網站嗎？諸如何嘉仁電子書櫃、…之類的：巨魔的臉：
+謝謝您的分享。
+
+終於再去嘗試看看，之前只是破解過康軒的
+
+@vochant請問有翰林竄改猴子使用者腳本嗎？
+
+@JennyJYJ
+JennyJYJ 評論道 1月18日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。安裝方法：
+
+安裝 Tampermonkey（竊改猴）插件
+新增使用者腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         KNSHUtility Lite
+// @namespace    http://vochant.github.io/
+// @version      2.3
+// @description  KNSH Utility - Cracks & Features
+// @author       Mirekintoc (vochant)
+// @match        https://digitalmaster.knsh.com.tw/v3/pages/*/index.html*
+// @match        https://digitalmaster.knsh.com.tw/ebooks/BookMain/Viewer_A/index.html*
+// @icon         https://webetextbook.knsh.com.tw/Ebookvieweran4Teacher/favicon.ico
+// @license      MIT
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+    // 'use strict';
+    console.log(unsafeWindow);
+    // 页面类型判定
+    if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/v3\/pages\/.*\/index\.html.*/)) {
+        console.log("运行模式: 导览页");
+        // 导览页面 - 绕过登录验证
+        unsafeWindow.__fetch = unsafeWindow.fetch;
+        unsafeWindow.fetch = async function(url, opts) {
+            if (/verifykeygrip/i.test(url)) {
+                return {
+                    json: function() {
+                        return {isValid: true};
+                    }
+                };
+            }
+            else {
+                let r = (await unsafeWindow.__fetch(url, opts)).json();
+                if (JSON.stringify(r).includes("errorType")) {
+                    return {
+                        json: function() {
+                            return {isValid: true};
+                        }
+                    };
+                }
+                return { json: function() {return r;} };
+            }
+        }
+    }
+    else if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/ebooks\/BookMain\/Viewer_A\/index\.html.*/)) {
+        console.log("运行模式: 国小电子书");
+        // 国小电子书页面 - 绕过登录验证
+        unsafeWindow.SaveCommForKnshAPIOriginal = unsafeWindow.SaveCommForKnshAPI; // 备份原构造函数
+        unsafeWindow.SaveCommForKnshAPI = function() {
+            let obj = new SaveCommForKnshAPIOriginal;
+            obj.VerifyHasLogin = function(arg) {
+                var t = senjClass.GetQueryString("shortcode");
+                var n = function(t) {
+                    arg && arg.fun && arg.fun(t)
+                };
+                n({result: true});
+                return true;
+            }; // 重写
+            console.log(obj);
+            return obj;
+        }; // 重写构造函数
+    }
+    else {
+        console.log('运行模式未知');
+    }
+})();
+@vochant大大你的這個很讚👍，可以開電子書也可以下載ISO。
+您還有嘗試過其他的網站嗎？諸如何嘉仁電子書櫃、…之類的：巨魔的臉：
+謝謝您的分享。
+
+終於再去嘗試看看，之前只是破解過康軒的
+
+@vochant請問有翰林竄改猴子使用者腳本嗎？
+
+@JennyJYJ
+JennyJYJ 評論道 1月18日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。
+
+安裝 Tampermonkey（竊改猴）插件
+增加用戶腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         KNSHUtility Lite
+// @namespace    http://vochant.github.io/
+// @version      2.3
+// @description  KNSH Utility - Cracks & Features
+// @author       Mirekintoc (vochant)
+// @match        https://digitalmaster.knsh.com.tw/v3/pages/*/index.html*
+// @match        https://digitalmaster.knsh.com.tw/ebooks/BookMain/Viewer_A/index.html*
+// @icon         https://webetextbook.knsh.com.tw/Ebookvieweran4Teacher/favicon.ico
+// @license      MIT
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+    // 'use strict';
+    console.log(unsafeWindow);
+    // 页面类型判定
+    if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/v3\/pages\/.*\/index\.html.*/)) {
+        console.log("运行模式: 导览页");
+        // 导览页面 - 绕过登录验证
+        unsafeWindow.__fetch = unsafeWindow.fetch;
+        unsafeWindow.fetch = async function(url, opts) {
+            if (/verifykeygrip/i.test(url)) {
+                return {
+                    json: function() {
+                        return {isValid: true};
+                    }
+                };
+            }
+            else {
+                let r = (await unsafeWindow.__fetch(url, opts)).json();
+                if (JSON.stringify(r).includes("errorType")) {
+                    return {
+                        json: function() {
+                            return {isValid: true};
+                        }
+                    };
+                }
+                return { json: function() {return r;} };
+            }
+        }
+    }
+    else if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/ebooks\/BookMain\/Viewer_A\/index\.html.*/)) {
+        console.log("运行模式: 国小电子书");
+        // 国小电子书页面 - 绕过登录验证
+        unsafeWindow.SaveCommForKnshAPIOriginal = unsafeWindow.SaveCommForKnshAPI; // 备份原构造函数
+        unsafeWindow.SaveCommForKnshAPI = function() {
+            let obj = new SaveCommForKnshAPIOriginal;
+            obj.VerifyHasLogin = function(arg) {
+                var t = senjClass.GetQueryString("shortcode");
+                var n = function(t) {
+                    arg && arg.fun && arg.fun(t)
+                };
+                n({result: true});
+                return true;
+            }; // 重写
+            console.log(obj);
+            return obj;
+        }; // 重写构造函数
+    }
+    else {
+        console.log('运行模式未知');
+    }
+})();
+@vochant大大你的這個很讚👍，可以開電子書也可以下載ISO。
+您還嘗試過其他網站嗎？：巨魔的臉：
+謝謝您的分享。
+
+終於再去嘗試看看，之前只是破解過康軒的
+
+@vochant想知道有竄改猴子的使用者腳本嗎？
+
+@JennyJYJ
+JennyJYJ 評論道 1月18日
+@vochant想知道有竄改猴子的使用者腳本嗎？
+
+@libin6959
+libin6959 評論 1月18日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。安裝方法：
+
+安裝 Tampermonkey（竊改猴）插件
+新增使用者腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         KNSHUtility Lite
+// @namespace    http://vochant.github.io/
+// @version      2.3
+// @description  KNSH Utility - Cracks & Features
+// @author       Mirekintoc (vochant)
+// @match        https://digitalmaster.knsh.com.tw/v3/pages/*/index.html*
+// @match        https://digitalmaster.knsh.com.tw/ebooks/BookMain/Viewer_A/index.html*
+// @icon         https://webetextbook.knsh.com.tw/Ebookvieweran4Teacher/favicon.ico
+// @license      MIT
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+    // 'use strict';
+    console.log(unsafeWindow);
+    // 页面类型判定
+    if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/v3\/pages\/.*\/index\.html.*/)) {
+        console.log("运行模式: 导览页");
+        // 导览页面 - 绕过登录验证
+        unsafeWindow.__fetch = unsafeWindow.fetch;
+        unsafeWindow.fetch = async function(url, opts) {
+            if (/verifykeygrip/i.test(url)) {
+                return {
+                    json: function() {
+                        return {isValid: true};
+                    }
+                };
+            }
+            else {
+                let r = (await unsafeWindow.__fetch(url, opts)).json();
+                if (JSON.stringify(r).includes("errorType")) {
+                    return {
+                        json: function() {
+                            return {isValid: true};
+                        }
+                    };
+                }
+                return { json: function() {return r;} };
+            }
+        }
+    }
+    else if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/ebooks\/BookMain\/Viewer_A\/index\.html.*/)) {
+        console.log("运行模式: 国小电子书");
+        // 国小电子书页面 - 绕过登录验证
+        unsafeWindow.SaveCommForKnshAPIOriginal = unsafeWindow.SaveCommForKnshAPI; // 备份原构造函数
+        unsafeWindow.SaveCommForKnshAPI = function() {
+            let obj = new SaveCommForKnshAPIOriginal;
+            obj.VerifyHasLogin = function(arg) {
+                var t = senjClass.GetQueryString("shortcode");
+                var n = function(t) {
+                    arg && arg.fun && arg.fun(t)
+                };
+                n({result: true});
+                return true;
+            }; // 重写
+            console.log(obj);
+            return obj;
+        }; // 重写构造函数
+    }
+    else {
+        console.log('运行模式未知');
+    }
+})();
+@vochant大大你的這個很讚👍，可以開電子書也可以下載ISO。
+您還有嘗試過其他的網站嗎？諸如何嘉仁電子書櫃、…之類的：巨魔的臉：
+謝謝您的分享。
+
+終於再去嘗試看看，之前只是破解過康軒的
+
+@vochant想知道有翰林的篡改猴腳本嗎？ 謝謝~
+
+@libin6959
+libin6959 評論 1月18日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。安裝方法：
+
+安裝 Tampermonkey（竊改猴）插件
+新增使用者腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         KNSHUtility Lite
+// @namespace    http://vochant.github.io/
+// @version      2.3
+// @description  KNSH Utility - Cracks & Features
+// @author       Mirekintoc (vochant)
+// @match        https://digitalmaster.knsh.com.tw/v3/pages/*/index.html*
+// @match        https://digitalmaster.knsh.com.tw/ebooks/BookMain/Viewer_A/index.html*
+// @icon         https://webetextbook.knsh.com.tw/Ebookvieweran4Teacher/favicon.ico
+// @license      MIT
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+    // 'use strict';
+    console.log(unsafeWindow);
+    // 页面类型判定
+    if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/v3\/pages\/.*\/index\.html.*/)) {
+        console.log("运行模式: 导览页");
+        // 导览页面 - 绕过登录验证
+        unsafeWindow.__fetch = unsafeWindow.fetch;
+        unsafeWindow.fetch = async function(url, opts) {
+            if (/verifykeygrip/i.test(url)) {
+                return {
+                    json: function() {
+                        return {isValid: true};
+                    }
+                };
+            }
+            else {
+                let r = (await unsafeWindow.__fetch(url, opts)).json();
+                if (JSON.stringify(r).includes("errorType")) {
+                    return {
+                        json: function() {
+                            return {isValid: true};
+                        }
+                    };
+                }
+                return { json: function() {return r;} };
+            }
+        }
+    }
+    else if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/ebooks\/BookMain\/Viewer_A\/index\.html.*/)) {
+        console.log("运行模式: 国小电子书");
+        // 国小电子书页面 - 绕过登录验证
+        unsafeWindow.SaveCommForKnshAPIOriginal = unsafeWindow.SaveCommForKnshAPI; // 备份原构造函数
+        unsafeWindow.SaveCommForKnshAPI = function() {
+            let obj = new SaveCommForKnshAPIOriginal;
+            obj.VerifyHasLogin = function(arg) {
+                var t = senjClass.GetQueryString("shortcode");
+                var n = function(t) {
+                    arg && arg.fun && arg.fun(t)
+                };
+                n({result: true});
+                return true;
+            }; // 重写
+            console.log(obj);
+            return obj;
+        }; // 重写构造函数
+    }
+    else {
+        console.log('运行模式未知');
+    }
+})();
+@vochant大大你的這個很讚👍，可以開電子書也可以下載ISO。
+您還有嘗試過其他的網站嗎？諸如何嘉仁電子書櫃、…之類的：巨魔的臉：
+謝謝您的分享。
+
+終於再去嘗試看看，之前只是破解過康軒的
+
+@vochant想知道有翰林的竄改猴子腳本嗎？ 謝謝~
+
+@Dkdn2828
+Dkdn2828 評論道 1月19日
+康軒業務電話 0982-820889 0963-009005
+
+@karajank99
+karajank99 評論道 1月19日
+我會用篡改猴子，同樣用上面的大部分添加腳本，但是無法登錄，所以想請教整個流程，是先登錄康的網頁，再啟動，還是要怎麼弄呢..
+
+@karajank99
+karajank99 評論道 1月19日
+電子書登入後可以把竄改猴刪除嗎？
+
+想問如何登錄呢，我會用竄改猴子，另外添加腳本，但就是無法登錄，不知道我的流程是否不呢？
+
+@karajank99
+karajank99 評論道 1月19日
+哎，上面講的那個1號紅字我沒出現，所以網站是否開錯，那要開那個康的網頁才對呢
+
+@Ethan-lo258
+Ethan-lo258 評論 1月21日 • 
+您好，我需要康軒的帳號和密碼，自學用的，謝謝！
+如果不方便提供帳號和密碼，也可以直接提供康軒業務電話號碼，喔感謝！
+電子郵件：yi Chengqiu118@gmail.com
+請您傳到以上提供的電子郵件信箱，感激不盡
+
+@ohio5566
+ohio5566 評論道 1月21日
+內部好友訊息，請不要發布收到有關的內容，會被 釣魚 跟 檢舉 。
+@Link285
+Link285 評論 1月22日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。安裝方法：
+
+安裝 Tampermonkey（竊改猴）插件
+新增使用者腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         KNSHUtility Lite
+// @namespace    http://vochant.github.io/
+// @version      2.3
+// @description  KNSH Utility - Cracks & Features
+// @author       Mirekintoc (vochant)
+// @match        https://digitalmaster.knsh.com.tw/v3/pages/*/index.html*
+// @match        https://digitalmaster.knsh.com.tw/ebooks/BookMain/Viewer_A/index.html*
+// @icon         https://webetextbook.knsh.com.tw/Ebookvieweran4Teacher/favicon.ico
+// @license      MIT
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+    // 'use strict';
+    console.log(unsafeWindow);
+    // 页面类型判定
+    if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/v3\/pages\/.*\/index\.html.*/)) {
+        console.log("运行模式: 导览页");
+        // 导览页面 - 绕过登录验证
+        unsafeWindow.__fetch = unsafeWindow.fetch;
+        unsafeWindow.fetch = async function(url, opts) {
+            if (/verifykeygrip/i.test(url)) {
+                return {
+                    json: function() {
+                        return {isValid: true};
+                    }
+                };
+            }
+            else {
+                let r = (await unsafeWindow.__fetch(url, opts)).json();
+                if (JSON.stringify(r).includes("errorType")) {
+                    return {
+                        json: function() {
+                            return {isValid: true};
+                        }
+                    };
+                }
+                return { json: function() {return r;} };
+            }
+        }
+    }
+    else if (location.href.match(/https:\/\/digitalmaster\.knsh\.com\.tw\/ebooks\/BookMain\/Viewer_A\/index\.html.*/)) {
+        console.log("运行模式: 国小电子书");
+        // 国小电子书页面 - 绕过登录验证
+        unsafeWindow.SaveCommForKnshAPIOriginal = unsafeWindow.SaveCommForKnshAPI; // 备份原构造函数
+        unsafeWindow.SaveCommForKnshAPI = function() {
+            let obj = new SaveCommForKnshAPIOriginal;
+            obj.VerifyHasLogin = function(arg) {
+                var t = senjClass.GetQueryString("shortcode");
+                var n = function(t) {
+                    arg && arg.fun && arg.fun(t)
+                };
+                n({result: true});
+                return true;
+            }; // 重写
+            console.log(obj);
+            return obj;
+        }; // 重写构造函数
+    }
+    else {
+        console.log('运行模式未知');
+    }
+})();
+這個沒有了
+
+@rtwrr
+rtwrr 評論道 1月22日
+///
+
+@Dkdn2828
+Dkdn2828 評論道 1月23日
+在這裡，我宣布，一旦我停止分享數據，除非你是家長要加我賴你聽證明證明你是家長如果你是家長，請聯繫我woaibidianbidian@gmail.com
+
+@jjzeq943
+jjzeq943 評論道 1月23日 透過電子郵件
+這可能有學生拿家長的身體分證被家長發現又會被誤認為騙個資個人覺得不太好 Dkdn2828 ***@***.***>於2025年1月23日週四，下午9:08寫道：
+…
+@chhung228
+chhung228 評論道 1月24日
+在這裡，我宣布，一旦我停止分享數據，除非你是家長要加我賴你聽證明證明你是家長如果你是家長，請聯繫我woaibidianbidian@gmail.com
+
+不知道會不會有出版社想要檢舉或想知道有哪些分享資料的內容需要MIS人員補強的，就謊稱自己是家長，可以造假各種資料來取得您的信任。
+
+@Rob1203
+Rob1203 評論道 1月24日
+已更新2.3版本，修復了先前的問題，專業了部分無用功能。安裝方法：
+
+安裝 Tampermonkey（竊改猴）插件
+新增使用者腳本
+把下面的程式碼複製進去
+ 
+ 
+這個沒有了
+ 
+
+新年快樂
+
+1
+
+@Dkdn2828
+Dkdn2828 評論道 1月26日 • 
+如果你是家長的我會提供康軒翰林南一註冊方式包括業務然後我會問你身份證駕照出生日期真實姓名還有加我的賴如果你覺得我是詐騙集團騙資料那麼不好意思你告訴你小孩的老師要答案給看看有國小生想騙 我答案
+正在上傳Screenshot_2025-01-26-01-29-22-32_e307a3f9df9f380ebaf106e1dc980bb6.jpg…
+
+@Dkdn2828
+Dkdn2828 評論道 1月26日
+正在上傳Screenshot_2025-01-26-01-29-20-36_e307a3f9df9f380ebaf106e1dc980bb6.jpg…
+
+@sam221315
+sam221315 評論道 1月27日
+我需要南一跟康軒linda30119@gmail.com
+
+@bowenx442
+bowenx442 評論道 1月28日 • 
+未命名
+影像
+影像
+影像
+我有電子書帳號、主控台代碼、Tampermonkey（盜改猴）代碼
+
+@ignite0611
+ignite0611 評論道 1月29日 • 
+我是家長，懇求急需一門國語和數學，衷心感謝~ ignite0611@gmail.com
+
+@jennychiu888
+jennychiu888 評論道 2月1日
+我是家長
+懇求康軒、翰林、帳密(絕對不會改變)，謝謝～！
+jennychiu888@yahoo.com.tw
+
+@zhangenyu51
+zhangenyu51 評論道 2月1日
+我有一個翰林公用帳號，以前使用禁止抄襲的方式，
+帳號：heiludan51@gmail.com
+密碼：enyu0818
+
+@zhangenyu51
+zhangenyu51 評論道 2月1日
+希望大家喜歡
+
+@sam221315
+sam221315 評論道 2月1日 透過電子郵件
+哥哥謝謝你是然而翰林我目前缺康軒哈哈zhangenyu51 ***@***.***>於2025年2月1日週六，上午11:51寫道：
+…
+ghost 評論 2月5日
+有康嗎？
+求求求
+
+@kerry0112
+kerry0112 評論道 2月9日
+康軒媒體盒免登錄版
+下載連結：https://www.mediafire.com/file/33znog0ikwouvn8/KNSHCrossPlatform.exe/file
+
+@ray1119ray
+ray1119ray 評論道 2月10日
+求南一帳號，謝謝～！
+( r936615700@gmail.com )
+
+@bowenx442
+bowenx442 評論道 2月11日
+@kerry0112你這個康軒媒體盒免登錄版要安裝嗎？
+
+@kerry0112
+kerry0112 評論道 2月11日 透過電子郵件
+需要 Bowenx442 ***@***.***> 於 2025 年 2 月 11 日週二下午 4:45 寫道：
+…
+@Winsbacker
+Winsbacker 評論道 2月12日 • 
+分享竄改猴子腳本，在瀏覽器分頁電子書名稱，適用翰林行動大師電子書，登錄後可用，沒有登錄也可以用 😁
+
+影像
+
+安裝方法：
+
+安裝 Tampermonkey（隱藏改猴）補充功能元件
+增加用戶腳本
+把下面的程式碼複製進去
+// ==UserScript==
+// @name         HanBook Utility
+// @version      0.95
+// @description  行動大師電子書分頁顯示書本名稱
+// @namespace    https://edisc3.hle.com.tw/
+// @author       none
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=hle.com.tw
+// @match        https://edisc3.hle.com.tw/edisc_v3/*book_v2023.html*
+// @match        https://h5.hle.com.tw/toolbar/release/index.html*
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+  'use strict';
+
+  const getCookieData = (key) => new URLSearchParams(document.cookie.replace(/; /g, '&')).get(key) || null, handleMutation = (mutations, callback) => { mutations.forEach(callback); }, removeElementsBySelectors = (selectors) => { selectors.forEach(selector => { const el = document.querySelector(selector); if (el) el.remove(); }); };
+
+  // 監視書名變化
+  (new MutationObserver(d => { d.forEach(e => { if (document.title.includes("翰林電子書")) { const h = getCookieData('data');
+    if (h) { document.title = h; document.cookie = "data=; domain=hle.com.tw; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;"; } } });
+  })).observe(document, { subtree: true, childList: true });
+
+  // 移除對話元件
+  new MutationObserver(i => handleMutation(i, (j) => { if (j.type === 'childList') { [...j.addedNodes].forEach(k => {
+    if (k.nodeType === 1 && k.classList.contains('swal2-container') && k.classList.contains('swal2-center') && k.classList.contains('swal2-backdrop-show')) {
+      k.remove();
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
+    } }); } })).observe(document.body, { childList: true, subtree: true });
+
+  // 移除個人資訊元件
+  removeElementsBySelectors([ "#editor-submit",  "#emailField",  "#page-top > div > section > div > div > div.row > div > div > form > div > div > div > input",  "html > body > section > lock-account-pop#lock-account-pop.popup-overlay" ]);
+
+  // 木遁。替身之術。
+  const interceptAPI = () => {
+    if (unsafeWindow.nxlib?.YouflipWebAPI?.postData) {
+      const originalPostData = unsafeWindow.nxlib.YouflipWebAPI.postData;
+      unsafeWindow.nxlib.YouflipWebAPI.postData = function(c, d, e) { if (c === "https://api-edisc3.hle.com.tw/token-verify") { e('true', '200'); console.log("回傳測試結果"); } else { originalPostData(c, d, e); } };
+    } else { setTimeout(interceptAPI, 100); }
+  };
+  interceptAPI();
+
+  // 行動大師 - 顯示電子書名稱
+  if (location.hostname === 'edisc3.hle.com.tw') {
+    const swalContainer = document.querySelector("body > div.swal2-container.swal2-center.swal2-backdrop-show"), headerLabel = document.querySelector("#wrapcontent > nav > header > div > label");
+    if (swalContainer) swalContainer.style.display = 'none';
+    if (headerLabel) headerLabel.removeAttribute('for');
+    const observer = new MutationObserver(d => handleMutation(d, ({ type }) => {
+      if (type === 'childList') {
+        const btnPlayBook = document.getElementById('btnPlayBook');
+        if (btnPlayBook) {
+          btnPlayBook.addEventListener('click', () => { document.querySelector("#recordForm").style.display = "none"; });
+          document.cookie = `data=${encodeURIComponent(document.querySelector('.lblTitle').innerText)}; domain=hle.com.tw; path=/;`;
+        }
+      }
+    }));
+    const table = document.querySelector('.detable');
+    if (table) observer.observe(table, { childList: true, subtree: true });
+  }
+
+  // 測試資訊
+  if (!localStorage.getItem(atob('b2lkYy51c2VyOmh0dHBzOi8vaWQuaGxlLmNvbS50dzpqcw=='))) {
+    Object.entries({ [decodeURIComponent(escape(atob('b2lkYy51c2VyOmh0dHBzOi8vaWQuaGxlLmNvbS50dzpqcw==')))]: decodeURIComponent(escape(atob('eyJpZF90b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW10cFpDSTZJamcxTnpnd05XWXhaR1EzWm1FNVlUWmlOVEkzWmpRMFpXTm1abUprTkRoaklpd2lkSGx3SWpvaVNsZFVJbjAuZXlKdVltWWlPakUzTXpjek1ETXdNRE1zSW1WNGNDSTZNVGN6T1RrNE1UUXdNeXdpYVhOeklqb2lhSFIwY0hNNkx5OXBaQzVvYkdVdVkyOXRMblIzSWl3aVlYVmtJam9pYW5NaUxDSnBZWFFpT2pFM016Y3pNRE13TURNc0ltRjBYMmhoYzJnaU9pSmZiMVpoYmxKVGQxOVBRekJTTUZKUVRFZDNiWFZCSWl3aWMxOW9ZWE5vSWpvaVYyNXRSMEZvTlRsYWFscE1URlY0TVVGMmFIRk9aeUlzSW5OcFpDSTZJa1EwYURCRExYYzNNM0ZPVFdWWWVubEVVWFpWVVVFaUxDSnpkV0lpT2lKaU56Y3lNakE1TVMwMFlXUXlMVFF4WVRRdFlqTXpaaTA1WXpReU5EWmpOell4T1RRaUxDSmhkWFJvWDNScGJXVWlPakUzTXpjek1ETXdNRElzSW1sa2NDSTZJbXh2WTJGc0lpd2lhSFIwY0RvdkwzTmphR1Z0WVhNdWVHMXNjMjloY0M1dmNtY3ZkM012TWpBd05TOHdOUzlwWkdWdWRHbDBlUzlqYkdGcGJYTXZaVzFoYVd4aFpHUnlaWE56SWpvaWEyOXNZV1JwTVRjMk1rQmlkWHBpYkc5NExtTnZiU0lzSWtGemNFNWxkQzVKWkdWdWRHbDBlUzVUWldOMWNtbDBlVk4wWVcxd0lqb2lOMGRHU1VSSVdrdEZWMUJVU2xkUlFrbzNTVGROTlZVME5WbFhNa2xSVWpVaUxDSmxiV0ZwYkNJNkltdHZiR0ZrYVRFM05qSkFZblY2WW14dmVDNWpiMjBpTENKbVlXMXBiSGxmYm1GdFpTSTZJdW1ac3lJc0ltZHBkbVZ1WDI1aGJXVWlPaUxvZ0lIbHVLc2lMQ0p1WVcxbElqb2k2Wm16NklDQjViaXJJaXdpWlcxaGFXeGZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQm9iMjVsWDI1MWJXSmxjaUk2SWpBNU1qZ3pOVEk1TlRFaUxDSndhRzl1WlY5dWRXMWlaWEpmZG1WeWFXWnBaV1FpT25SeWRXVXNJbkJ5WldabGNuSmxaRjkxYzJWeWJtRnRaU0k2SXVtWnMtaUFnZVc0cXlJc0luVnpaWEpmWkc5dFlXbHVJam9pWldSMUlpd2ljbTlzWlNJNkl1aUFnZVc0cXlJc0luTmphRzl2YkZONWMzUmxiU0k2SXVXY2ktV3dqeUlzSW1semFXUmxiblJwWm1sbFpDSTZkSEoxWlN3aWJHOWpheUk2ZEhKMVpTd2lkbVZ5SWpvekxDSmhiWElpT2xzaWNIZGtJbDE5LjczVXZQUlRSSWVLNFIxTloxUWhCZHI2RVZjdDFyU1VKcEdLSVAteU1OM2hsTEttSWJITXpyTnAxNEZaZVY4YUpEaEQtb3A2MER0OE9mRlAxX2hxZjdfc2R5QWptbW41bEEwdXU5akxmMU9sbTE5SUZrMHlSZkpUcHNyLTczeFBrNTdmcllGdGZWZmlDVWZGS1Z6RWx1LTc4YnFBX2VmQUE1a1RtRGNRMHBiVHAzaWpxeDBEZktOcXJPVHJXcTk2WFUzSURDYi00R191SnpualdicVNQOXVObUhCeXFZaGlKZ1JqQTJSb091ekFIRWtCNFh0S2VRbF9ITzVlcWNKMnRXVER1LWU4eTRpTWtsdmd3emdPY0dUSW1aSXFIZDE5VkN5U3lvNlR1WnJwdlMxNVhlR0x3UDBJbm8zaEhtcXdiTzFURGlJeEVnN21KZ0dPdnBORklhUSIsInNlc3Npb25fc3RhdGUiOiJjSFdsLW1RYUpKeFU1bEFNckNaUy1LTXFHZHkxdXp5bk8yVGNwX2trRDBZLkFDZXBHZ01YNEVRV3I1V1IyMUJHQkEiLCJhY2Nlc3NfdG9rZW4iOiJleUpoYkdjaU9pSlNVekkxTmlJc0ltdHBaQ0k2SWpnMU56Z3dOV1l4WkdRM1ptRTVZVFppTlRJM1pqUTBaV05tWm1Ka05EaGpJaXdpZEhsd0lqb2lZWFFyYW5kMEluMC5leUp1WW1ZaU9qRTNNemN6TURNd01ETXNJbVY0Y0NJNk1UYzJPVFEwTXpnd015d2lhWE56SWpvaWFIUjBjSE02THk5cFpDNW9iR1V1WTI5dExuUjNJaXdpWVhWa0lqcGJJbUZ3YVRFaUxDSkpaR1Z1ZEdsMGVWTmxjblpsY2tGd2FTSXNJbWhoYm14cGJpMWhjR2tpWFN3aVkyeHBaVzUwWDJsa0lqb2lhbk1pTENKemRXSWlPaUppTnpjeU1qQTVNUzAwWVdReUxUUXhZVFF0WWpNelppMDVZelF5TkRaak56WXhPVFFpTENKaGRYUm9YM1JwYldVaU9qRTNNemN6TURNd01ESXNJbWxrY0NJNklteHZZMkZzSWl3aWFIUjBjRG92TDNOamFHVnRZWE11ZUcxc2MyOWhjQzV2Y21jdmQzTXZNakF3TlM4d05TOXBaR1Z1ZEdsMGVTOWpiR0ZwYlhNdlpXMWhhV3hoWkdSeVpYTnpJam9pYTI5c1lXUnBNVGMyTWtCaWRYcGliRzk0TG1OdmJTSXNJa0Z6Y0U1bGRDNUpaR1Z1ZEdsMGVTNVRaV04xY21sMGVWTjBZVzF3SWpvaU4wZEdTVVJJV2t0RlYxQlVTbGRSUWtvM1NUZE5OVlUwTlZsWE1rbFJValVpTENKbGJXRnBiQ0k2SW10dmJHRmthVEUzTmpKQVluVjZZbXh2ZUM1amIyMGlMQ0ptWVcxcGJIbGZibUZ0WlNJNkl1bVpzeUlzSW1kcGRtVnVYMjVoYldVaU9pTG9nSUhsdUtzaUxDSnVZVzFsSWpvaTZabXo2SUNCNWJpcklpd2laVzFoYVd4ZmRtVnlhV1pwWldRaU9uUnlkV1VzSW5Cb2IyNWxYMjUxYldKbGNpSTZJakE1TWpnek5USTVOVEVpTENKd2FHOXVaVjl1ZFcxaVpYSmZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQnlaV1psY25KbFpGOTFjMlZ5Ym1GdFpTSTZJdW1acy1pQWdlVzRxeUlzSW5WelpYSmZaRzl0WVdsdUlqb2laV1IxSWl3aWNtOXNaU0k2SXVpQWdlVzRxeUlzSW5OamFHOXZiRk41YzNSbGJTSTZJdVdjaS1Xd2p5SXNJbWx6YVdSbGJuUnBabWxsWkNJNmRISjFaU3dpYkc5amF5STZkSEoxWlN3aWRtVnlJam96TENKelkyOXdaU0k2V3lKdmNHVnVhV1FpTENKd2NtOW1hV3hsSWl3aVlYQnBNU0lzSWtsa1pXNTBhWFI1VTJWeWRtVnlRWEJwSWl3aWFHRnViR2x1TFdGd2FTSXNJbTltWm14cGJtVmZZV05qWlhOeklsMHNJbUZ0Y2lJNld5SndkMlFpWFgwLkhkQ1FwQnJMRXkxVktraFNIVThWU05fZmlOSVU1alBuZUJuaGVrdzY0R1lBX3VLNEh5S2N4SXFnX2dicFdnQVVOWlZXSXZHbXBhTEItRGp4bVlka3N3dkFYVE9GazJrc2NYNXQ2R0RYTHdLaVhkS3J3QmkxQ0hUdEppWUVtdmNKcDR2M2JENy0yTjdxTkNVMFJ5dzFudEJEUU1rTFM5UzNxTnBCTmNmQ2VZN195enlpR050QVJsS1cxeEw0bzI4UEpVN3BmSngxdEZ6WGZESVJpLVFVbzh1T1lOSEFUX21iUEVKTm01eVM5RU5BallMS1F6LXVVb3hTUndIMDl5aUVFaXJEZlZTN1JjWlhFMS1KbVhkcXRXN1hlbF9XdTRZYVlDYlpvN0pia2FlMWxvbjBYR3lVWTRTS09Kb2E5VVplUWVMNTZzZzhhX3BqTC13MEE3eEpkUSIsInJlZnJlc2hfdG9rZW4iOiJVYWI2ZHV4N0ltV3lHM2lqZFNESWJvOHdib2JFZ3psQUtMN3NXb3Jvd044IiwidG9rZW5fdHlwZSI6IkJlYXJlciIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgYXBpMSBJZGVudGl0eVNlcnZlckFwaSBoYW5saW4tYXBpIG9mZmxpbmVfYWNjZXNzIiwicHJvZmlsZSI6eyJzX2hhc2giOiJXbm1HQWg1OVpqWkxMVXgxQXZocU5nIiwic2lkIjoiRDRoMEMtdzczcU5NZVh6eURRdlVRQSIsInN1YiI6ImI3NzIyMDkxLTRhZDItNDFhNC1iMzNmLTljNDI0NmM3NjE5NCIsImF1dGhfdGltZSI6MTczNzMwMzAwMiwiaWRwIjoidHJ1ZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImtvbGFkaTE3NjJAYnV6YmxveC5jb20iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjdHRklESFpLRVdQVEpXUUJKN0k3TTVVNDVZVzJJUVI1IiwiZW1haWwiOiJ0ZWFjaGVyQGhsZS5jb20udHciLCJmYW1pbHlfbmFtZSI6Iue/sOaelyIsImdpdmVuX25hbWUiOiLmm7jlsYAiLCJuYW1lIjoi57+w5p6X5pu45bGAIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX251bWJlciI6IjA5MjgzNTI5NTEiLCJwaG9uZV9udW1iZXJfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6Iue/sOael+abuOWxgCIsInVzZXJfZG9tYWluIjoiZWR1Iiwicm9sZSI6IuiAgeW4qyIsInNjaG9vbFN5c3RlbSI6IuWci+WwjyIsImlzaWRlbnRpZmllZCI6dHJ1ZSwibG9jayI6ZmFsc2UsInZlciI6MywiYW1yIjpbInB3ZCJdfSwiZXhwaXJlc19hdCI6MTc2OTQ0MzgwNH0='))), [decodeURIComponent(escape(atob('ZWRpc2NfdmFsaWR1c2VyX3YyMDIz')))]: decodeURIComponent(escape(atob('bW9ja1VzZXI='))) }).forEach(([k, v]) => localStorage.setItem(k, v));
+    window.location.reload();
+  }
+
+})();
+@ghostgt2
+ghostgt2 評論道 2月12日
+分享竄改猴子腳本，在瀏覽器分頁電子書名稱，適用翰林行動大師電子書，登錄後可用，沒有登錄也可以用 😁
+
+影像
+
+安裝方法：
+
+1. 安裝 Tampermonkey（篡改猴）擴充功能元件
+
+2. 新增使用者脚本
+
+3. 把下面的程式碼複製進去
+// ==UserScript==
+// @name         HanBook Utility
+// @version      0.95
+// @description  行動大師電子書分頁顯示書本名稱
+// @namespace    https://edisc3.hle.com.tw/
+// @author       none
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=hle.com.tw
+// @match        https://edisc3.hle.com.tw/edisc_v3/*book_v2023.html*
+// @match        https://h5.hle.com.tw/toolbar/release/index.html*
+// @grant        unsafeWindow
+// ==/UserScript==
+
+(function() {
+  'use strict';
+
+  const getCookieData = (key) => new URLSearchParams(document.cookie.replace(/; /g, '&')).get(key) || null, handleMutation = (mutations, callback) => { mutations.forEach(callback); }, removeElementsBySelectors = (selectors) => { selectors.forEach(selector => { const el = document.querySelector(selector); if (el) el.remove(); }); };
+
+  // 監視書名變化
+  (new MutationObserver(d => { d.forEach(e => { if (document.title.includes("翰林電子書")) { const h = getCookieData('data');
+    if (h) { document.title = h; document.cookie = "data=; domain=hle.com.tw; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;"; } } });
+  })).observe(document, { subtree: true, childList: true });
+
+  // 移除對話元件
+  new MutationObserver(i => handleMutation(i, (j) => { if (j.type === 'childList') { [...j.addedNodes].forEach(k => {
+    if (k.nodeType === 1 && k.classList.contains('swal2-container') && k.classList.contains('swal2-center') && k.classList.contains('swal2-backdrop-show')) {
+      k.remove();
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
+    } }); } })).observe(document.body, { childList: true, subtree: true });
+
+  // 移除個人資訊元件
+  removeElementsBySelectors([ "#editor-submit",  "#emailField",  "#page-top > div > section > div > div > div.row > div > div > form > div > div > div > input",  "html > body > section > lock-account-pop#lock-account-pop.popup-overlay" ]);
+
+  // 木遁。替身之術。
+  const interceptAPI = () => {
+    if (unsafeWindow.nxlib?.YouflipWebAPI?.postData) {
+      const originalPostData = unsafeWindow.nxlib.YouflipWebAPI.postData;
+      unsafeWindow.nxlib.YouflipWebAPI.postData = function(c, d, e) { if (c === "https://api-edisc3.hle.com.tw/token-verify") { e('true', '200'); console.log("回傳測試結果"); } else { originalPostData(c, d, e); } };
+    } else { setTimeout(interceptAPI, 100); }
+  };
+  interceptAPI();
+
+  // 行動大師 - 顯示電子書名稱
+  if (location.hostname === 'edisc3.hle.com.tw') {
+    const swalContainer = document.querySelector("body > div.swal2-container.swal2-center.swal2-backdrop-show"), headerLabel = document.querySelector("#wrapcontent > nav > header > div > label");
+    if (swalContainer) swalContainer.style.display = 'none';
+    if (headerLabel) headerLabel.removeAttribute('for');
+    const observer = new MutationObserver(d => handleMutation(d, ({ type }) => {
+      if (type === 'childList') {
+        const btnPlayBook = document.getElementById('btnPlayBook');
+        if (btnPlayBook) {
+          btnPlayBook.addEventListener('click', () => { document.querySelector("#recordForm").style.display = "none"; });
+          document.cookie = `data=${encodeURIComponent(document.querySelector('.lblTitle').innerText)}; domain=hle.com.tw; path=/;`;
+        }
+      }
+    }));
+    const table = document.querySelector('.detable');
+    if (table) observer.observe(table, { childList: true, subtree: true });
+  }
+
+  // 測試資訊
+  if (!localStorage.getItem(atob('b2lkYy51c2VyOmh0dHBzOi8vaWQuaGxlLmNvbS50dzpqcw=='))) {
+    Object.entries({ [decodeURIComponent(escape(atob('b2lkYy51c2VyOmh0dHBzOi8vaWQuaGxlLmNvbS50dzpqcw==')))]: decodeURIComponent(escape(atob('eyJpZF90b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW10cFpDSTZJamcxTnpnd05XWXhaR1EzWm1FNVlUWmlOVEkzWmpRMFpXTm1abUprTkRoaklpd2lkSGx3SWpvaVNsZFVJbjAuZXlKdVltWWlPakUzTXpjek1ETXdNRE1zSW1WNGNDSTZNVGN6T1RrNE1UUXdNeXdpYVhOeklqb2lhSFIwY0hNNkx5OXBaQzVvYkdVdVkyOXRMblIzSWl3aVlYVmtJam9pYW5NaUxDSnBZWFFpT2pFM016Y3pNRE13TURNc0ltRjBYMmhoYzJnaU9pSmZiMVpoYmxKVGQxOVBRekJTTUZKUVRFZDNiWFZCSWl3aWMxOW9ZWE5vSWpvaVYyNXRSMEZvTlRsYWFscE1URlY0TVVGMmFIRk9aeUlzSW5OcFpDSTZJa1EwYURCRExYYzNNM0ZPVFdWWWVubEVVWFpWVVVFaUxDSnpkV0lpT2lKaU56Y3lNakE1TVMwMFlXUXlMVFF4WVRRdFlqTXpaaTA1WXpReU5EWmpOell4T1RRaUxDSmhkWFJvWDNScGJXVWlPakUzTXpjek1ETXdNRElzSW1sa2NDSTZJbXh2WTJGc0lpd2lhSFIwY0RvdkwzTmphR1Z0WVhNdWVHMXNjMjloY0M1dmNtY3ZkM012TWpBd05TOHdOUzlwWkdWdWRHbDBlUzlqYkdGcGJYTXZaVzFoYVd4aFpHUnlaWE56SWpvaWEyOXNZV1JwTVRjMk1rQmlkWHBpYkc5NExtTnZiU0lzSWtGemNFNWxkQzVKWkdWdWRHbDBlUzVUWldOMWNtbDBlVk4wWVcxd0lqb2lOMGRHU1VSSVdrdEZWMUJVU2xkUlFrbzNTVGROTlZVME5WbFhNa2xSVWpVaUxDSmxiV0ZwYkNJNkltdHZiR0ZrYVRFM05qSkFZblY2WW14dmVDNWpiMjBpTENKbVlXMXBiSGxmYm1GdFpTSTZJdW1ac3lJc0ltZHBkbVZ1WDI1aGJXVWlPaUxvZ0lIbHVLc2lMQ0p1WVcxbElqb2k2Wm16NklDQjViaXJJaXdpWlcxaGFXeGZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQm9iMjVsWDI1MWJXSmxjaUk2SWpBNU1qZ3pOVEk1TlRFaUxDSndhRzl1WlY5dWRXMWlaWEpmZG1WeWFXWnBaV1FpT25SeWRXVXNJbkJ5WldabGNuSmxaRjkxYzJWeWJtRnRaU0k2SXVtWnMtaUFnZVc0cXlJc0luVnpaWEpmWkc5dFlXbHVJam9pWldSMUlpd2ljbTlzWlNJNkl1aUFnZVc0cXlJc0luTmphRzl2YkZONWMzUmxiU0k2SXVXY2ktV3dqeUlzSW1semFXUmxiblJwWm1sbFpDSTZkSEoxWlN3aWJHOWpheUk2ZEhKMVpTd2lkbVZ5SWpvekxDSmhiWElpT2xzaWNIZGtJbDE5LjczVXZQUlRSSWVLNFIxTloxUWhCZHI2RVZjdDFyU1VKcEdLSVAteU1OM2hsTEttSWJITXpyTnAxNEZaZVY4YUpEaEQtb3A2MER0OE9mRlAxX2hxZjdfc2R5QWptbW41bEEwdXU5akxmMU9sbTE5SUZrMHlSZkpUcHNyLTczeFBrNTdmcllGdGZWZmlDVWZGS1Z6RWx1LTc4YnFBX2VmQUE1a1RtRGNRMHBiVHAzaWpxeDBEZktOcXJPVHJXcTk2WFUzSURDYi00R191SnpualdicVNQOXVObUhCeXFZaGlKZ1JqQTJSb091ekFIRWtCNFh0S2VRbF9ITzVlcWNKMnRXVER1LWU4eTRpTWtsdmd3emdPY0dUSW1aSXFIZDE5VkN5U3lvNlR1WnJwdlMxNVhlR0x3UDBJbm8zaEhtcXdiTzFURGlJeEVnN21KZ0dPdnBORklhUSIsInNlc3Npb25fc3RhdGUiOiJjSFdsLW1RYUpKeFU1bEFNckNaUy1LTXFHZHkxdXp5bk8yVGNwX2trRDBZLkFDZXBHZ01YNEVRV3I1V1IyMUJHQkEiLCJhY2Nlc3NfdG9rZW4iOiJleUpoYkdjaU9pSlNVekkxTmlJc0ltdHBaQ0k2SWpnMU56Z3dOV1l4WkdRM1ptRTVZVFppTlRJM1pqUTBaV05tWm1Ka05EaGpJaXdpZEhsd0lqb2lZWFFyYW5kMEluMC5leUp1WW1ZaU9qRTNNemN6TURNd01ETXNJbVY0Y0NJNk1UYzJPVFEwTXpnd015d2lhWE56SWpvaWFIUjBjSE02THk5cFpDNW9iR1V1WTI5dExuUjNJaXdpWVhWa0lqcGJJbUZ3YVRFaUxDSkpaR1Z1ZEdsMGVWTmxjblpsY2tGd2FTSXNJbWhoYm14cGJpMWhjR2tpWFN3aVkyeHBaVzUwWDJsa0lqb2lhbk1pTENKemRXSWlPaUppTnpjeU1qQTVNUzAwWVdReUxUUXhZVFF0WWpNelppMDVZelF5TkRaak56WXhPVFFpTENKaGRYUm9YM1JwYldVaU9qRTNNemN6TURNd01ESXNJbWxrY0NJNklteHZZMkZzSWl3aWFIUjBjRG92TDNOamFHVnRZWE11ZUcxc2MyOWhjQzV2Y21jdmQzTXZNakF3TlM4d05TOXBaR1Z1ZEdsMGVTOWpiR0ZwYlhNdlpXMWhhV3hoWkdSeVpYTnpJam9pYTI5c1lXUnBNVGMyTWtCaWRYcGliRzk0TG1OdmJTSXNJa0Z6Y0U1bGRDNUpaR1Z1ZEdsMGVTNVRaV04xY21sMGVWTjBZVzF3SWpvaU4wZEdTVVJJV2t0RlYxQlVTbGRSUWtvM1NUZE5OVlUwTlZsWE1rbFJValVpTENKbGJXRnBiQ0k2SW10dmJHRmthVEUzTmpKQVluVjZZbXh2ZUM1amIyMGlMQ0ptWVcxcGJIbGZibUZ0WlNJNkl1bVpzeUlzSW1kcGRtVnVYMjVoYldVaU9pTG9nSUhsdUtzaUxDSnVZVzFsSWpvaTZabXo2SUNCNWJpcklpd2laVzFoYVd4ZmRtVnlhV1pwWldRaU9uUnlkV1VzSW5Cb2IyNWxYMjUxYldKbGNpSTZJakE1TWpnek5USTVOVEVpTENKd2FHOXVaVjl1ZFcxaVpYSmZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQnlaV1psY25KbFpGOTFjMlZ5Ym1GdFpTSTZJdW1acy1pQWdlVzRxeUlzSW5WelpYSmZaRzl0WVdsdUlqb2laV1IxSWl3aWNtOXNaU0k2SXVpQWdlVzRxeUlzSW5OamFHOXZiRk41YzNSbGJTSTZJdVdjaS1Xd2p5SXNJbWx6YVdSbGJuUnBabWxsWkNJNmRISjFaU3dpYkc5amF5STZkSEoxWlN3aWRtVnlJam96TENKelkyOXdaU0k2V3lKdmNHVnVhV1FpTENKd2NtOW1hV3hsSWl3aVlYQnBNU0lzSWtsa1pXNTBhWFI1VTJWeWRtVnlRWEJwSWl3aWFHRnViR2x1TFdGd2FTSXNJbTltWm14cGJtVmZZV05qWlhOeklsMHNJbUZ0Y2lJNld5SndkMlFpWFgwLkhkQ1FwQnJMRXkxVktraFNIVThWU05fZmlOSVU1alBuZUJuaGVrdzY0R1lBX3VLNEh5S2N4SXFnX2dicFdnQVVOWlZXSXZHbXBhTEItRGp4bVlka3N3dkFYVE9GazJrc2NYNXQ2R0RYTHdLaVhkS3J3QmkxQ0hUdEppWUVtdmNKcDR2M2JENy0yTjdxTkNVMFJ5dzFudEJEUU1rTFM5UzNxTnBCTmNmQ2VZN195enlpR050QVJsS1cxeEw0bzI4UEpVN3BmSngxdEZ6WGZESVJpLVFVbzh1T1lOSEFUX21iUEVKTm01eVM5RU5BallMS1F6LXVVb3hTUndIMDl5aUVFaXJEZlZTN1JjWlhFMS1KbVhkcXRXN1hlbF9XdTRZYVlDYlpvN0pia2FlMWxvbjBYR3lVWTRTS09Kb2E5VVplUWVMNTZzZzhhX3BqTC13MEE3eEpkUSIsInJlZnJlc2hfdG9rZW4iOiJVYWI2ZHV4N0ltV3lHM2lqZFNESWJvOHdib2JFZ3psQUtMN3NXb3Jvd044IiwidG9rZW5fdHlwZSI6IkJlYXJlciIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgYXBpMSBJZGVudGl0eVNlcnZlckFwaSBoYW5saW4tYXBpIG9mZmxpbmVfYWNjZXNzIiwicHJvZmlsZSI6eyJzX2hhc2giOiJXbm1HQWg1OVpqWkxMVXgxQXZocU5nIiwic2lkIjoiRDRoMEMtdzczcU5NZVh6eURRdlVRQSIsInN1YiI6ImI3NzIyMDkxLTRhZDItNDFhNC1iMzNmLTljNDI0NmM3NjE5NCIsImF1dGhfdGltZSI6MTczNzMwMzAwMiwiaWRwIjoidHJ1ZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImtvbGFkaTE3NjJAYnV6YmxveC5jb20iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjdHRklESFpLRVdQVEpXUUJKN0k3TTVVNDVZVzJJUVI1IiwiZW1haWwiOiJ0ZWFjaGVyQGhsZS5jb20udHciLCJmYW1pbHlfbmFtZSI6Iue/sOaelyIsImdpdmVuX25hbWUiOiLmm7jlsYAiLCJuYW1lIjoi57+w5p6X5pu45bGAIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX251bWJlciI6IjA5MjgzNTI5NTEiLCJwaG9uZV9udW1iZXJfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6Iue/sOael+abuOWxgCIsInVzZXJfZG9tYWluIjoiZWR1Iiwicm9sZSI6IuiAgeW4qyIsInNjaG9vbFN5c3RlbSI6IuWci+WwjyIsImlzaWRlbnRpZmllZCI6dHJ1ZSwibG9jayI6ZmFsc2UsInZlciI6MywiYW1yIjpbInB3ZCJdfSwiZXhwaXJlc19hdCI6MTc2OTQ0MzgwNH0='))), [decodeURIComponent(escape(atob('ZWRpc2NfdmFsaWR1c2VyX3YyMDIz')))]: decodeURIComponent(escape(atob('bW9ja1VzZXI='))) }).forEach(([k, v]) => localStorage.setItem(k, v));
+    window.location.reload();
+  }
+
+})();
+謝謝，試了登錄，但未登錄不行，還是非常感謝！
+
+@Junwei601
+Junwei601 評論道 2月13日 • 
+需要康軒帳號跟奇鼎的業務號碼麻煩各為了(不會更改任何設定)
+如果願意請傳到
+andrew2010990601@gmail.com的信箱謝謝
+
+@jenny7202
+jenny7202 評論道 2月13日
+求康軒跟南一雲端出題帳號，小孩自學用的急需，如願意者請轉發到
+lu7202@yahoo.com.tw 信箱，非常感謝。
+
+@maggiezoe
+maggiezoe 評論道 2月13日
+需要康軒帳號(不會更改任何設定)
+我的信箱tom122035@gmail.com謝謝
+
+@lisa830315
+lisa830315 評論道 2月14日
+需要康跟南帳號密碼
+小孩自學不會更改
+我的信箱lisa830315@gmail.com的任何設置
+
+@yyyr1005
+yyyr1005 評論道 2月14日
+南一資源全(本學期): https://drive.google.com/drive/folders/1DCvKm3Eq5Z3S-MyVKWDoNBgMKmPTW3ru
+
+@yyyr1005
+yyyr1005 評論道 2月14日
+南一資源：https://drive.google.com/drive/folders/1DCvKm3Eq5Z3S-MyVKWDoNBgMKmPTW3ru
+
+@lisa830315
+lisa830315 評論道 2月14日 透過電子郵件
+非常感謝你🙏 yyyr1005 ***@***.***>於2025年2月14日星期五，下午7:59寫道：
+…
+ghost 評論 2月14日
+需要康軒帳號(不會更改任何設定)
+我的信箱[ isabella781107@gmail.com ]謝謝
+
+@yyyr1005
+yyyr1005 評論道 2月14日
+南一考卷：https://drive.google.com/drive/folders/1IZj-3M4-0g4XJJNDF5gvqt-lAlWqRJtz
+
+@BenChen5
+BenChen5 評論道 2月14日
+因為小孩使用康軒的教材
+所以需要康軒帳號(不會更改任何設定)
+我的信箱：t26164630@gmail.com
+非常感謝您
+
+@ino26
+ino26 評論道 2月14日
+要找的是【國小】資源
+網路應可找到所需的免登錄雲端硬盤的資源
+
+@liutnnnnng
+liutnnnnng 評論道 2月15日
+我是家裡長
+懷求康軒、南一帳密（最終對不會改變），謝謝～
+信箱：liutung719@gmail.com
+
+@itsnottzqj
+itsnottzqj 評論道 2月15日
+需要康軒帳號(不會更改任何設定)
+我的信箱jennalai0918@gmail.com謝謝
+
+@Kevin-Cheong
+Kevin-Cheong 評論道 2月16日
+由於自學需要，特懇求龍騰帳密(變更)，郵箱如下，謝謝~！
+s11005270@office365.choinong.edu.mo
+
+@Hohn0987
+Hohn0987 評論道 2月16日
+有人可以提供康軒帳密嗎？
+
+@sera5885
+sera5885 評論道 2月17日
+我有康軒南一的帳號和密碼 有需要電子書可以說我
+
+麻煩我要康軒帳號，謝謝lucy730807@gmail.com
+
+我需要南一跟康軒的帳號密碼，謝謝您的分享
+
+可以跟您索取康軒帳號及密碼嗎？很需要學習資源幫助孩子，懇請幫忙
+
+julie.liao@darfon.com
+您好 我需要康軒帳密sera5885@gmail.com
+
+@emily810022
+emily810022 評論道 2月18日
+我有康軒南一的帳號和密碼 有需要電子書可以說我
+
+麻煩我要康軒帳號，謝謝lucy730807@gmail.com
+
+我需要南一跟康軒的帳號密碼，謝謝您的分享
+
+可以跟您索取康軒帳號及密碼嗎？很需要學習資源幫助孩子，懇請幫助
+julie.liao@darfon.com
+您好 我需要康軒帳密sera5885@gmail.com
+
+您好~我需要康軒的帳密 ( emily810022@gmail.com ) 謝謝您
+
+@ericliuliuliu
+ericliuliuliu 評論道 2月18日
+您好 我需要翰林輔材網的帳號密碼 絕對不會輕易更改
+liuericsecond@gmail.com
+
+@fyrryr
+fyrryr 評論道 2月18日 透過電子郵件
+需要康軒帳號 (不會更改任何設定) BenChen5 ***@***.***> 於 2025 年 2 月 14 日 星期五 10:39 文字：
+…
+@kerry0112
+kerry0112 評論道 2月19日
+我覺得用安裝版的會比較好，因為大部分書局都會為了兼容而繼續讓舊版本可以使用，那我們只要一個辦法找到漏洞就可以用很久了，也不過咱把自動更新關掉
+
+@kerry0112
+kerry0112 評論道 2月19日
+大想要的機器人驗證，這裡有一篇文章，https://www.design-hu.com.tw/wordpress/wordpress-tools/recaptcha.html
+(防的了機器人，防不住真人)
+
+@Aidan1105ghjftiyfut
+Aidan1105ghjftiyfut 評論道 2月21日
+需要康軒帳號(不會更改任何設定)
+我的信箱[ yxuan5356@gmail.com ]謝謝
+
+@12120814
+12120814條 評論 2月21日
+需要康軒帳號(不會更改任何設定)
+我的信箱[ 9487mudgood@gmail.com ]謝謝
+
+@soralu25
+soralu25 評論道 2月21日
+我有康軒南一的帳號和密碼 有需要電子書可以說我
+
+麻煩我要康軒帳號，謝謝lucy730807@gmail.com
+
+我需要南一跟康軒的帳號密碼，謝謝您的分享
+
+可以跟您索取康軒帳號及密碼嗎？很需要學習資源幫助孩子，懇請幫助
+julie.liao@darfon.com
+您好 我需要康軒帳密sera5885@gmail.com
+
+跪求南一和康軒的頭像跟密碼
+不捨得
+
+@soralu25
+soralu25 評論道 2月21日
+跪求南一和康軒的頭像跟密碼
+wang_michelle@hotmail.com
+感激不盡
+
+@soralu25
+soralu25 評論道 2月22日
+我有康軒南一的帳號和密碼 有需要電子書可以說我
+
+需要南一跟康軒的帳號跟密碼！soralu25@gmail.com
+感恩
+
+@katychen393
+katychen393 評論道 2月23日
+需要康軒的帳號跟密碼 謝謝
+katychen393@gmail.com
+
+@kikilien0929
+kikilien0929 評論道 2月25日
+求康軒帳密
+a0989386336@gmail.com ，謝謝
+
+@ling10o
+ling10o 評論道 2月25日
+需要翰林康軒帳號(不會更改任何設定)
+我的信箱[ ww.0978282918@gmail.com ]謝謝
+
+@Hohn0987
+Hohn0987 評論道 2月25日
+需要康軒帳號(不會更改任何設定)
+我的信箱li3458sophia@gmail.com 謝謝
+
+@ling10o
+ling10o 評論道 2月25日 透過電子郵件
+請問帳號是什麼密碼 Hohn0987 ***@***.***>於2025年2月25日週二下午9:56 寫道：
+…
+@0903jennylee
+0903jennylee 評論道 2月26日
+求康軒翰林南一號
+49146@gmail.com
+謝謝～不會竊改
+
+@gary032351
+gary032351 評論道 2月26日 • 
+請問誰可以給我南一、翰林、康軒的帳單嗎？ 拜託了gary03230323@gmail.com
+
+@Helena1007146
+Helena1007146 評論 2月27日
+求康軒頭像，若有可直接寄至email，感激不盡！
+sweetcathleen520@gmail.com
+
+@emily810022
+emily810022 評論道 2月27日
+請問有康軒帳號可以分享嗎？保固不會亂改，拜託了，謝謝
+emily810022@gmail.com
+
+@opgh487
+opgh487 評論道 2月27日
+請問有人可以給我康軒帳密嗎？
+applecat610@gmail.com
+
+@stephanie921921
+stephanie921921 評論道 2月28日
+stephanie.ch921@gmail.com
+跪求 跪求！ ！ ！ 翰林電子書使用附上同樣無法下載~~有人有帳密可以提供嗎~~拜託急需！ ！ ！
+或有其他方式可以破解電子書~
+
+@tingtexas
+tingtexas 評論道 2月28日
+您好 我需要翰林輔材網的帳號密碼 絕對不會輕易更改
+ting.hero@gmail.com
+
+@mo12160503
+mo12160503 評論 3月1日
+您好：需要康軒帳號(不會更改任何設定)
+我的信箱follbollmomo@gmail.com )]感謝
+
+@tilu-ff
+tilu-ff 評論道 3月1日
+我有一個翰林公用帳號，以前用過禁止抄襲的方式，帳號：heiludan51@gmail.com密碼：enyu0818
+
+謝謝，這個可用
+
+@ewe3836
+ewe3836 評論道 3月1日
+您好：需要康軒帳號(不會更改任何設定)
+我的信箱a0989559748@gmail.com )]感謝
+
+@zhangenyu51
+zhangenyu51 評論道 3月2日 透過電子郵件
+不會 tilu-ff ***@***.***> 於 2025 年 3 月 1 日 週六下午 4:18 寫道：
+…
+@linda518303
+linda518303 評論道 3月2日
+我有康軒南一的號碼和密碼有需要電子書可以說
+
+麻煩我要康軒帳號，謝謝lucy730807@gmail.com
+
+我需要南一跟康軒的帳號密碼，謝謝您的分享
+
+可以跟您索取康軒帳號及密碼嗎？
+julie.liao@darfon.com
+您好 我需要康軒帳密sera5885@gmail.com
+
+你好我需要康軒的帳號及密碼登錄後絕不外洩及更改密碼求你分享非常感謝🙏( linda518303518@gmail.com )
+
+@Mego-eng
+Mego-eng 評論 3月2日
+我有康軒南一的號碼和密碼有需要電子書可以說
+
+麻煩我要康軒帳號，謝謝lucy730807@gmail.com
+
+我需要南一跟康軒的帳號密碼，謝謝您的分享
+
+可以跟您索取康軒帳號及密碼嗎？
+julie.liao@darfon.com
+您好 我需要康軒帳密sera5885@gmail.com
+
+你好我需要康軒的帳號及密碼登錄後絕不外洩及更改密碼求你分享非常感謝🙏( linda518303518@gmail.com )
+
+我需要康軒帳號密碼，謝謝你mego210431@gmail.com
+
+@anitatsai13
+anitatsai13 評論道 3月3日
++1
+
+@毛貓17
+Maocat17 評論道 3月4日
++1
+
+@ceshizhuanyong895
+ceshizhuanyong895 評論 3月5日
+做一個調查 EVGO 瀏覽器可直接看電子書與下載資源（目前僅支援 Win10 11 Win 7 未測試過）。目前只支援康軒翰林南一...需要一個帳號綁一台機器，有意願的＋1若只需要帳密請跳過。
+
++1
+
+@tacosen1024
+tacosen1024 評論道 3月5日 • 
+想問是否有南一帳密QQ
+我的EMAIL：taco1024.05@gmail.com
+
+@2006casper
+2006casper 評論道 3月5日
+學生家長求南一康軒帳號，謝謝
+我的Gmail: 2006casper@gmail.com
+
+@1110051tkgsh
+1110051tkgsh 評論 3月6日
+我要康*帳號，不會改任何東西
+ya.chen.wu981002@gmail.com
+
+稍後加載評論...
+@myhu02
+myhu02 評論道 15 分鐘前
+首先我把頭像分享一下
+
+那我也求康軒頭像
+
+帳號分享～
+
+請勿亂改密碼和名字和個資等！ ！ ！ ！ ！ ！ ！ ！ ！ ！ ！ ！ ！
+
+南一帳號Muji105057
+翰林
+帳號mfji105057@gmail.com
+密碼Aa770818
+
+@myhu02
+評論
+ 
+發表評論
+ 
+頁尾
+© 2025 GitHub, Inc.
+頁尾導航
+條款
+隱私
+安全
+地位
+文件
+接觸
+管理 Cookie
+不要分享我的個人訊息
